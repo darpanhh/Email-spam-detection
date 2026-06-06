@@ -6,6 +6,10 @@ from nltk.corpus import stopwords
 import nltk
 from nltk.stem.porter import PorterStemmer
 
+# Download required NLTK data
+nltk.download('punkt', quiet=True)
+nltk.download('stopwords', quiet=True)
+
 ps = PorterStemmer()
 
 def transform_text(text):
@@ -36,12 +40,9 @@ def transform_text(text):
 app_dir = os.path.dirname(os.path.abspath(__file__))
 model_dir = os.path.join(app_dir, '..', 'data', 'models')
 
+# Load model and vectorizer
 tfidf = pickle.load(open(os.path.join(model_dir, 'vectorizer.pkl'), 'rb'))
 model = pickle.load(open(os.path.join(model_dir, 'model.pkl'), 'rb'))
-
-# Download required NLTK data
-nltk.download('punkt', quiet=True)
-nltk.download('stopwords', quiet=True)
 
 st.title("Email/SMS Spam Classifier")
 
@@ -52,8 +53,8 @@ if st.button('Predict'):
     transformed_sms = transform_text(input_sms)
     vector_input = tfidf.transform([transformed_sms]).toarray()
     result = model.predict(vector_input)[0]
-
+    
     if result == 1:
-        st.header('Spam')
+        st.header("🚨 Spam")
     else:
-        st.header('Not spam')
+        st.header("✅ Not Spam")
