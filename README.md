@@ -385,7 +385,7 @@ This project is open source and available under the MIT License.
 
 ## 👤 Author
 
-**Darshan Patel**
+**Darpan Giri**
 
 - GitHub: [@darpanhh](https://github.com/darpanhh)
 - Project: [Email Spam Detection](https://github.com/darpanhh/Email-spam-detection)
